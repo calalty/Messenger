@@ -14,14 +14,4 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-  callbacks: {
-    async redirect({ url, baseUrl }) {
-      if (url.includes("/auth/signin")) return `${baseUrl}/`;
-
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      else if (new URL(url).origin === baseUrl) return url;
-
-      return baseUrl;
-    },
-  },
 };
