@@ -14,7 +14,8 @@ type Props = {
 export const MessageList = ({ initialMessages }: Props) => {
   const { data: messages, mutate } = useSWR<Message[]>(
     "/api/getMessages",
-    fetcher
+    fetcher,
+    { revalidateOnFocus: true }
   );
 
   useEffect(() => {
