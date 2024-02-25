@@ -9,9 +9,5 @@ export async function GET() {
     .map((message) => JSON.parse(message))
     .sort((a, b) => b.created_at - a.created_at);
 
-  return NextResponse.json(messages, {
-    headers: {
-      "Cache-Control": "no-cache",
-    },
-  });
+  return NextResponse.json(messages);
 }
