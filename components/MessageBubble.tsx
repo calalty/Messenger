@@ -1,22 +1,31 @@
 import { Message } from "@/typings";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React from "react";
 
+import React, { useEffect, useState } from "react";
+import TimeAgo from "react-timeago";
 type Props = {
   message: Message;
 };
 
-export const MessageComponent = ({
-  message: { profilePic, message, username, created_at, email },
+export const MessageBubble = ({
+  message: { message, username, created_at, email },
 }: Props) => {
-  const isUser = true;
+  const { data: session } = useSession();
+  const isUser = session?.user?.email === email;
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, [isClient]);
 
   return (
     <div className={`flex w-fit ${isUser && "ml-auto"}`}>
       <div className={`flex-shrink-0 ${isUser && "order-2"}`}>
         <Image
-          src={profilePic}
-          className="rounded-full mx-2"
+          src={`https://robohash.org/${session?.user?.name}`}
+          className="rounded-full bg-gray-100 border-[#1e004850] border-[1px] mx-2"
           height={10}
           width={50}
           alt="Profile Picture"
@@ -46,7 +55,7 @@ export const MessageComponent = ({
               isUser && "text-right"
             }`}
           >
-            {new Date(created_at).toLocaleString()}
+            <TimeAgo live date={new Date(created_at)} />
           </p>
         </div>
       </div>

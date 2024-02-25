@@ -6,21 +6,23 @@ import { Button } from "./Button";
 import { Message } from "@/typings";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetchMessages";
+import { Session } from "next-auth";
 
-export const ChatInput = () => {
+type Props = {
+  session: Session | null;
+};
+
+export const ChatInput = ({ session }: Props) => {
   const [input, setInput] = useState<string>();
-  const {
-    data: messages,
-    error,
-    mutate,
-  } = useSWR<Message[]>("/api/getMessages", fetcher);
-
-  console.log(messages);
+  const { data: messages, mutate } = useSWR<Message[]>(
+    "/api/getMessages",
+    fetcher
+  );
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!input) return;
+    if (!input || !session) return;
 
     const messageToSend = input;
 
@@ -32,10 +34,9 @@ export const ChatInput = () => {
       id,
       message: messageToSend,
       created_at: Date.now(),
-      username: "Elon Musk",
-      profilePic:
-        "https://images.unsplash.com/photo-1647888774545-96f662a65e15",
-      email: "callum.alton33@gmail.com",
+      username: session?.user?.name!,
+      profilePic: session?.user?.image!,
+      email: session?.user?.email!,
     };
 
     const uploadMessageToUpstash = async () => {
@@ -65,6 +66,7 @@ export const ChatInput = () => {
     >
       <input
         value={input}
+        disabled={!session}
         onChange={(e) => setInput(e.target.value)}
         type="text"
         placeholder="Enter message here..."
