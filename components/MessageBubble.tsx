@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const MessageBubble = ({
-  message: { message, username, created_at, email },
+  message: { message, username, created_at, email, color },
 }: Props) => {
   const { data: session } = useSession();
   const isUser = session?.user?.email === email;
@@ -34,17 +34,20 @@ export const MessageBubble = ({
 
       <div>
         <p
-          className={`text-[0.65rem] px-[2px] pb-[2px] ${
-            isUser ? "text-blue-400 text-right" : "text-red-400 text-left"
-          } `}
+          style={{
+            color: isUser ? "#1e0048" : color,
+            textAlign: isUser ? "right" : "left",
+          }}
+          className="text-[0.65rem] px-[2px] pb-[2px]"
         >
           {username}
         </p>
 
         <div className="flex items-end">
           <div
+            style={{ backgroundColor: isUser ? "#1e0048" : color }}
             className={`px-3 py-2 rounded-lg w-fit text-white ${
-              isUser ? "bg-blue-400 ml-auto order-2" : "bg-red-400"
+              isUser && "ml-auto order-2"
             } `}
           >
             <p>{message}</p>
