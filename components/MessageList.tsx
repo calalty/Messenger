@@ -8,8 +8,9 @@ import { clientPusher } from "@/pusher";
 import { MessageBubble } from "./MessageBubble";
 
 type Props = {
-  initialMessages: Message[];
+  initialMessages?: Message[];
 };
+
 export const MessageList = ({ initialMessages }: Props) => {
   const { data: messages, mutate } = useSWR<Message[]>(
     "/api/getMessages",
@@ -41,7 +42,7 @@ export const MessageList = ({ initialMessages }: Props) => {
 
   return (
     <ul className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {(messages || initialMessages)?.map((message) => (
+      {messages?.map((message) => (
         <li key={message.id}>
           <MessageBubble message={message} />
         </li>
