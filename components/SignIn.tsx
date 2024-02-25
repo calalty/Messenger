@@ -14,12 +14,7 @@ export const SignIn = ({ providers }: Props) => {
         Object.values(providers).map((provider) => (
           <div key={provider.name}>
             <Button
-              onClick={() =>
-                signIn(provider.id, {
-                  callbackUrl:
-                    process.env.VERCEL_URL || "http://localhost:3000/",
-                })
-              }
+              onClick={() => signIn(provider.id)}
               text={`Sign in with ${provider.name}`}
             />
           </div>

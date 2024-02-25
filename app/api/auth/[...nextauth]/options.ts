@@ -1,12 +1,12 @@
-import Facebook from "next-auth/providers/facebook";
+import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
-    Facebook({
-      clientId: process.env.FACEBOOK_CLIENT_ID!,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     // ...add more providers here
   ],
