@@ -2,13 +2,13 @@ import ClientPusher from "pusher-js";
 import Pusher from "pusher";
 
 export const serverPusher = new Pusher({
-  appId: "1761546",
-  key: "50ee4416fc7afb649617",
-  secret: "b241c6c9680a22ee51ec",
-  cluster: "eu",
+  appId: process.env.PUSHER_APP_ID!,
+  key: process.env.PUSHER_KEY!,
+  secret: process.env.PUSHER_SECRET!,
+  cluster: process.env.PUSHER_CLUSTER!,
   useTLS: true,
 });
 
-export const clientPusher = new ClientPusher("50ee4416fc7afb649617", {
-  cluster: "eu",
+export const clientPusher = new ClientPusher(process.env.PUSHER_KEY!, {
+  cluster: process.env.PUSHER_CLUSTER!,
 });
