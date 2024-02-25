@@ -9,6 +9,7 @@ import { Providers } from "./providers";
 const Home = async () => {
   const session = await getServerSession();
 
+  console.log({ session });
   return (
     <main>
       <Providers session={session}>

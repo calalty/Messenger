@@ -5,5 +5,6 @@ export const fetcher = async () => {
   const data = await res.json();
   const messages: Message[] = data;
 
+  console.log('FETCHER'{messages})
   return messages;
 };
