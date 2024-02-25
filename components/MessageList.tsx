@@ -12,12 +12,16 @@ type Props = {
 };
 
 export const MessageList = ({ initialMessages }: Props) => {
-  const { data: messages, mutate } = useSWR<Message[]>(
-    "/api/getMessages",
-    fetcher,
-    { revalidateOnFocus: true }
-  );
+  const {
+    data: messages,
+    error,
+    mutate,
+  } = useSWR<Message[]>("/api/getMessages", fetcher);
 
+  if (error) {
+    console.error("SWR Error:", error);
+    // Handle error if needed
+  }
   useEffect(() => {
     const channel = clientPusher.subscribe("messages");
 
