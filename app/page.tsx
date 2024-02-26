@@ -11,7 +11,7 @@ const Home = async () => {
   const session = await getServerSession();
 
   const messages: Message[] = await fetch(
-    `https://messenger-zeta-opal.vercel.app/api/getMessages`,
+    `${process.env.VERCEL_URL}/api/getMessages`,
     { cache: "no-store" }
   )
     .then((res) => {
@@ -21,10 +21,7 @@ const Home = async () => {
       return res.json();
     })
     .catch((error) => {
-      // Log the error
       console.error("Error fetching messages:", error);
-      // You can also throw the error again if you want to propagate it further
-      // throw error;
     });
 
   return (
