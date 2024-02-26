@@ -1,5 +1,5 @@
 "use client";
-import Cookies from "js-cookie";
+
 import { v4 as uuid } from "uuid";
 import { FormEvent, useState } from "react";
 import { Button } from "./Button";
@@ -30,15 +30,21 @@ export const ChatInput = ({ session }: Props) => {
 
     const id = uuid();
 
-    let color = Cookies.get("userColor");
-
-    if (!color) {
-      color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-      Cookies.set("userColor", color, { expires: 365 });
-    }
+    const stringToColour = (str: string) => {
+      let hash = 0;
+      str.split("").forEach((char) => {
+        hash = char.charCodeAt(0) + ((hash << 5) - hash);
+      });
+      let colour = "#";
+      for (let i = 0; i < 3; i++) {
+        const value = (hash >> (i * 8)) & 0xff;
+        colour += value.toString(16).padStart(2, "0");
+      }
+      return colour;
+    };
 
     const message: Message = {
-      color,
+      color: stringToColour(session?.user?.name!),
       id,
       message: messageToSend,
       created_at: Date.now(),

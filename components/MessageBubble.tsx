@@ -14,7 +14,7 @@ export const MessageBubble = ({
   message: { message, username, created_at, email, color },
 }: Props) => {
   const { data: session } = useSession();
-  const isUser = session?.user?.email === email;
+  const isUser = session?.user?.email !== email;
 
   const [isClient, setIsClient] = useState(false);
 
