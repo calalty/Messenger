@@ -13,7 +13,19 @@ const Home = async () => {
   const messages: Message[] = await fetch(
     `${process.env.VERCEL_URL}/api/getMessages`,
     { cache: "no-store" }
-  ).then((res) => res.json());
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Failed to fetch messages. Status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      // Log the error
+      console.error("Error fetching messages:", error);
+      // You can also throw the error again if you want to propagate it further
+      // throw error;
+    });
 
   return (
     <Providers session={session}>
