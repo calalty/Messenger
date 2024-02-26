@@ -14,8 +14,7 @@ type Props = {
 export const MessageList = ({ initialMessages }: Props) => {
   const { data: messages, mutate } = useSWR<Message[]>(
     "/api/getMessages",
-    fetcher,
-    { revalidateOnFocus: true }
+    fetcher
   );
 
   useEffect(() => {
@@ -42,7 +41,7 @@ export const MessageList = ({ initialMessages }: Props) => {
 
   return (
     <ul className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {(messages ?? initialMessages)?.map((message) => (
+      {(initialMessages)?.map((message) => (
         <li key={message.id}>
           <MessageBubble message={message} />
         </li>
