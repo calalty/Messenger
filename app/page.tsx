@@ -11,7 +11,7 @@ const Home = async () => {
   const session = await getServerSession();
 
   const messages: Message[] = await fetch(
-    `${process.env.VERCEL_URL}/api/getMessages`,
+    `https://messenger-zeta-opal.vercel.app/api/getMessages`,
     { cache: "no-store" }
   )
     .then((res) => {
