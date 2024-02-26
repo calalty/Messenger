@@ -1,6 +1,7 @@
 import { getProviders } from "next-auth/react";
 import Image from "next/image";
-import messengerLogo from "../../../images/messenger.png";
+import chitChatLogo from "../../../images/chitchat.png";
+
 import { SignIn } from "@/components/SignIn";
 
 const SignInPage = async () => {
@@ -9,7 +10,7 @@ const SignInPage = async () => {
   return (
     <div className="flex justify-center items-center flex-col mt-8 gap-6">
       <Image
-        src={messengerLogo}
+        src={chitChatLogo}
         alt=""
         width={600}
         height={100}

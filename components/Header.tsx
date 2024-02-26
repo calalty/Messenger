@@ -1,5 +1,5 @@
 import React from "react";
-import messengerLogo from "../images/messenger.png";
+import chitChatLogo from "../images/chitchat.png";
 
 import Image from "next/image";
 
@@ -12,20 +12,20 @@ export const Header = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="flex flex-row p-5 border-b-1 border-gray-200 shadow-md justify-between items-center text-[#1e0048]">
+    <header className="flex flex-row p-5 border-b-1 border-gray-200 shadow-md justify-between items-center">
       <div className="flex flex-row items-center gap-4">
         <Image
           src={
             session
               ? `https://robohash.org/${session.user?.name}`
-              : messengerLogo
+              : chitChatLogo
           }
           alt=""
           width={300}
           height={50}
           className={`w-16 object-contain ${
             session &&
-            "rounded-full bg-gray-100 border-[#1e004850] border-[1px]"
+            "rounded-full bg-gray-100 border-[#84848450] border-[1px]"
           }`}
         />
 
@@ -35,7 +35,7 @@ export const Header = async () => {
             <p className="font-bold">{session.user?.name}</p>
           </div>
         ) : (
-          <p className="font-bold">Welcome to Messenger!</p>
+          <p className="font-bold">Welcome to Chit-Chat!</p>
         )}
       </div>
 

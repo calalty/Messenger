@@ -84,7 +84,7 @@ export const ChatInput = ({ session }: Props) => {
         onChange={(e) => setInput(e.target.value)}
         type="text"
         placeholder="Enter message here..."
-        className="flex-1 rounded-3xl border-[#1e004850] border-[1px] focus:outline-none focus:ring-1 focus:ring-[#1e0048] focus:border-transparent px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed placeholder-[#1e004850]"
+        className="flex-1 rounded-3xl border-[#84848450] border-[1px] focus:outline-none focus:ring-1 focus:ring-[#848484] focus:border-transparent px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed placeholder-[#84848450]"
       />
 
       <Button

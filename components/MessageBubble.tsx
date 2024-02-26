@@ -14,7 +14,7 @@ export const MessageBubble = ({
   message: { message, username, created_at, email, color },
 }: Props) => {
   const { data: session } = useSession();
-  const isUser = session?.user?.email !== email;
+  const isUser = session?.user?.email === email;
 
   const [isClient, setIsClient] = useState(false);
 
@@ -27,7 +27,7 @@ export const MessageBubble = ({
       <div className={`flex-shrink-0 ${isUser && "order-2"}`}>
         <Image
           src={`https://robohash.org/${session?.user?.name}`}
-          className="rounded-full bg-gray-100 border-[#1e004850] border-[1px] mx-2"
+          className="rounded-full bg-gray-100 border-[#84848450] border-[1px] mx-2"
           height={10}
           width={50}
           alt="Profile Picture"
@@ -37,7 +37,7 @@ export const MessageBubble = ({
       <div>
         <p
           style={{
-            color: isUser ? "#1e0048" : color,
+            color: isUser ? "#848484" : color,
             textAlign: isUser ? "right" : "left",
           }}
           className="text-[0.65rem] px-[2px] pb-[2px]"
@@ -47,7 +47,7 @@ export const MessageBubble = ({
 
         <div className="flex items-end">
           <div
-            style={{ backgroundColor: isUser ? "#1e0048" : color }}
+            style={{ backgroundColor: isUser ? "#848484" : color }}
             className={`px-3 py-2 rounded-lg w-fit text-white ${
               isUser && "ml-auto order-2"
             } `}

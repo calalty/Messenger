@@ -20,7 +20,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
       type={type}
-      className={`bg-white h-fit px-4 py-2 rounded-3xl border-[#1e0048] border-[1px] font-bold shadow-[#1e0048_4px_4px_0_0] disabled:text-[#1e004850] ${additionalClassName}`}
+      className={`bg-[#f8f8ed] h-fit px-4 py-2 rounded-3xl border-[#848484] border-[1px] font-bold shadow-[#848484_4px_4px_0_0] disabled:text-[#84848450] text-[#848484] ${additionalClassName}`}
     >
       {text}
     </button>
