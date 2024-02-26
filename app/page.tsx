@@ -7,6 +7,8 @@ import { getServerSession } from "next-auth";
 import { Providers } from "./providers";
 import { Message } from "@/typings";
 
+export const dynamic = "force-dynamic";
+
 const Home = async () => {
   const session = await getServerSession();
 
