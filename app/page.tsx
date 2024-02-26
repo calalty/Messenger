@@ -27,7 +27,7 @@ const Home = async () => {
   return (
     <Providers session={session}>
       <main>
-        <MessageList initialMessages={messages} />
+        {messages && <MessageList initialMessages={messages} />}
         <ChatInput session={session} />
       </main>
     </Providers>
