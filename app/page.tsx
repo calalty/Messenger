@@ -10,7 +10,7 @@ import { Message } from "@/typings";
 const Home = async () => {
   const session = await getServerSession();
   const messages: Message[] = await fetch(
-    `${process.env.VERCEL_URL}api/getMessages`,
+    `${process.env.VERCEL_URL}/api/getMessages`,
     { cache: "no-store" }
   )
     .then((res) => {
