@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const MessageBubble = ({
-  message: { message, username, created_at, email, color },
+  message: { message, username, created_at, email, color, profilePic },
 }: Props) => {
   const { data: session } = useSession();
   const isUser = session?.user?.email === email;
@@ -26,7 +26,7 @@ export const MessageBubble = ({
     <div className={`flex w-fit ${isUser && "ml-auto"}`}>
       <div className={`flex-shrink-0 ${isUser && "order-2"}`}>
         <Image
-          src={`https://robohash.org/${session?.user?.name}`}
+          src={profilePic}
           className="rounded-full bg-gray-100 border-[#84848450] border-[1px] mx-2"
           height={10}
           width={50}
