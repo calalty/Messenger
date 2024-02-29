@@ -21,8 +21,6 @@ export const MessageList = ({ initialMessages }: Props) => {
     const channel = clientPusher.subscribe("messages");
 
     channel.bind("new-message", async (data: Message) => {
-      console.log("NEW MESSAGE");
-
       if (messages?.find((message) => message.id === data.id)) return;
 
       if (!messages) {
