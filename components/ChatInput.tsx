@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const ChatInput = ({ session }: Props) => {
-  const [input, setInput] = useState<string>();
+  const [input, setInput] = useState<string>("");
   const { data: messages, mutate } = useSWR<Message[]>(
     "/api/getMessages",
     fetcher

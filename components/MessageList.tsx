@@ -21,6 +21,8 @@ export const MessageList = ({ initialMessages }: Props) => {
     const channel = clientPusher.subscribe("messages");
 
     channel.bind("new-message", async (data: Message) => {
+      console.log("NEW MESSAGE");
+
       if (messages?.find((message) => message.id === data.id)) return;
 
       if (!messages) {
@@ -37,11 +39,11 @@ export const MessageList = ({ initialMessages }: Props) => {
       channel.unbind_all();
       channel.unsubscribe();
     };
-  }, [messages, mutate]);
+  }, [messages, mutate, clientPusher]);
 
   return (
     <ul className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {(messages ?? initialMessages)?.map((message) => (
+      {(messages || initialMessages)?.map((message) => (
         <li key={message.id}>
           <MessageBubble message={message} />
         </li>
