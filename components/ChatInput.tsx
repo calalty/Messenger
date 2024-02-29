@@ -49,7 +49,6 @@ export const ChatInput = ({ session }: Props) => {
       message: messageToSend,
       created_at: Date.now(),
       username: session?.user?.name!,
-      profilePic: `https://robohash.org/${session?.user?.name}`,
       email: session?.user?.email!,
     };
 

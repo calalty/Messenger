@@ -3,7 +3,6 @@ export type Message = {
   message: string;
   created_at: number;
   username: string;
-  profilePic: string;
   email: string;
   color: string;
 };
